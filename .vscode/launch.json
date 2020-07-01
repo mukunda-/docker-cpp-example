@@ -15,12 +15,12 @@
 
          // What program to execute - this will be a path inside of the
          // container.
-         "program" : "/build/debug/docker-cpp-example",
-         "args"    : [],
+         "program": "/build/debug/docker-cpp-example",
+         "args":    [],
 
          // The working directory for the debuggee; docker-compose
          // configuration will mount our workspace folder to /wd.
-         "cwd"     : "/wd/env",
+         "cwd": "/wd/env",
 
          // Don't pause the debugger upon launch.
          "stopAtEntry": false,
