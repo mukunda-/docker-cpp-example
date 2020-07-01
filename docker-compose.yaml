@@ -1,0 +1,36 @@
+# docker-cpp-example               © 2020 Mukunda Johnson <mukunda@mukunda.com>
+#------------------------------------------------------------------------------
+version: '3'
+services:
+   #---------------------------------------------------------------------------
+   # A lightweight environment for compiling C++ and debugging with gdb.
+   clang:
+      # Build our image.
+      build: ./clang
+      image: clang
+      container_name: clang
+      hostname: mygame-clang
+      
+      # Idle in bash. Can attach to this but most things will just be exec
+      # commands.
+      command: /bin/bash
+      tty: true
+
+      # Like -i to keep the container alive when we aren't attached.
+      stdin_open: true 
+      
+      # For debugging.
+      privileged: true
+
+      volumes:
+         # Map working directory to /wd.
+         - .:/wd
+
+         # Map build volume to /build.
+         - build:/build
+
+#------------------------------------------------------------------------------
+volumes:
+   # This is where the project will be built - a volume inside of the
+   # container. Contains any temporary build files and the results.
+   build:

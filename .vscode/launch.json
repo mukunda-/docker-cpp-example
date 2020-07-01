@@ -1,0 +1,71 @@
+{
+   // Use IntelliSense to learn about possible attributes.
+   // Hover to view descriptions of existing attributes.
+   // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+   "version": "0.2.0",
+   "configurations": [
+      {
+         // Our debugger launch configuration.
+         "name": "Docker Debug",
+         "request": "launch",
+
+         // Launch configuration type. This targets gdb.
+         "type": "cppdbg",
+         "MIMode": "gdb",
+
+         // What program to execute - this will be a path inside of the
+         // container.
+         "program" : "/build/debug/docker-cpp-example",
+         "args"    : [],
+
+         // The working directory for the debuggee; docker-compose
+         // configuration will mount our workspace folder to /wd.
+         "cwd"     : "/wd/env",
+
+         // Don't pause the debugger upon launch.
+         "stopAtEntry": false,
+
+         // Use the integrated console in vscode.
+         "externalConsole": false,
+
+         // Not entirely sure what this does.
+         "avoidWindowsConsoleRedirection": true,
+
+         // Call the build task first; ideally we'd want to avoid this if we
+         // are already up to date, but that is out of the scope of this
+         // example.
+         "preLaunchTask": "Build Debug",
+
+         // pipeTransport allows us to run a debugger through a console or
+         // such.
+         "pipeTransport": {
+            // Working directory that the command will be executed - the
+            // workspace folder.
+            "pipeCwd": "${workspaceFolder}",
+
+            // We're going to start the debugger in our container from
+            // docker-compose.
+            "pipeProgram": "docker-compose",
+            "pipeArgs": [
+               // -T is to disable allocating a TTY. I don't know what effect
+               // that has exactly, but it doesn't work otherwise.
+               "exec", "-T",
+               "clang",
+               "bash",
+
+               // Kind of weird that we end with this, but as far as I know,
+               // the debugger command is plainly appended right to the end of
+               // the command string along with arguments.
+               "-c"
+            ],
+            "debuggerPath": "/usr/bin/gdb"
+         },
+
+         // Map the working directory mount in the debugger/container
+         // environment to our workspace.
+         "sourceFileMap": {
+            "/wd":"${workspaceFolder}"
+         }
+      }
+   ]
+}
