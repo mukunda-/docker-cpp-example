@@ -11,4 +11,4 @@ launch the debugger.
 By default, can build the project with `CTRL+Shift+B` or start debugging with
 `F5`.
 
-Accompanies my blog entry: (TODO)
+Accompanies my blog entry: https://blog.mukunda.com/building-and-debugging-c-in-a-container-with-visual-studio-code/
