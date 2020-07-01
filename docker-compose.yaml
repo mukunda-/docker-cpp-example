@@ -9,7 +9,7 @@ services:
       build: ./clang
       image: clang
       container_name: clang
-      hostname: mygame-clang
+      hostname: clang
       
       # Idle in bash. Can attach to this but most things will just be exec
       # commands.

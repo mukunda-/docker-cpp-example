@@ -49,7 +49,7 @@ except:
 if not os.path.exists( "Makefile" ):
    # Makefile doesn't exist yet.
    print( "Setting up first-time build." )
-   sh( "cmake --target mygame-server -DCMAKE_BUILD_TYPE=%s /wd"
+   sh( "cmake --target docker-cpp-example -DCMAKE_BUILD_TYPE=%s /wd"
        % ("Release" if opts.build == "RELEASE" else "Debug") )
 
 #------------------------------------------------------------------------------
