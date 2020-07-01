@@ -1,27 +1,26 @@
 {
-	"version": "2.0.0",
-	"tasks": [
-		{
+   "version": "2.0.0",
+   "tasks": [
+      {
          // Our task for building the project in debug configuration.
-			"label":   "Build Debug",
+         "label":   "Build Debug",
          "type":    "shell",
          
          // Executing a command in our clang host to run the build python
          // script (executing the python script inside the container).
          "command": "docker-compose",
-			"args": [
+         "args": [
             "exec",
             "clang",
-            "/bin/bash",
-            "-c",
-            "/wd/scripts/build.py --build debug"
+            "/wd/scripts/build.py",
+            "--build", "debug"
          ],
          
-			"group": {
+         "group": {
             // Default build action.
-				"kind"      : "build",
-				"isDefault" : true
-			}
-		}
-	]
+            "kind"      : "build",
+            "isDefault" : true
+         }
+      }
+   ]
 }
